@@ -1,17 +1,7 @@
-// Proof of concept example for sending button presses to Simagic wheelbases
-// by Keijo 'Kegetys' Ruotsalainen, http://www.kegetys.fi
+// First try to make my own Simagic wheel based on work done by Keijo 'Kegetys' Ruotsalainen, http://www.kegetys.fi
+//
 
-// Pinout for wiring to Wemos D1 Mini (hardware SPI + CE & CS):
-// Wemos pin - nRF24 pin
-//      3.3V - VCC
-//       GND - GND
-//        D0 - CE
-//        D5 - SCLK
-//        D6 - MISO
-//        D7 - MOSI
-//        D8 - CS
-
-// Pinout for wiring to ESP32 Devkit (hardware SPI + CE & CS):
+// Pinout for wiring to ESP32 32pin Devkit (hardware SPI + CE & CS):
 // ESP32 Wroom 30pin - nRF24 pin
 //        3.3V - VCC
 //        GND - GND
@@ -26,7 +16,7 @@
 #include "simagic.h"
 
 #define PIN_SIMAGIC_CE  4
-#define PIN_SIMAGIC_CS  5
+#define PIN_SIMAGIC_CS  15
 #define SIMAGIC_CHANNEL 60 // channel configured in SimPro manager
 
 // SPI used so CSN, MOSI, MISO and SCK must be wired to HW pins (IRQ not needed)
@@ -46,7 +36,7 @@ void setup()
   // uncomment this and the include above to send the rim identification packet
   // you should see the rim appear in SimPro manager then.
   // The buttons and axes however work even without doing this, you just won't see a rim in the manager.
-  //sendRimInit();
+  sendRimInit();
 }
 
 void loop()
